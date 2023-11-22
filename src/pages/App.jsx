@@ -1,7 +1,7 @@
 function App() {
 	return (
 		<div>
-			<p className="text-pink-500">Template SACOD</p>
+			<p>Template SACOD</p>
 		</div>
 	);
 }
