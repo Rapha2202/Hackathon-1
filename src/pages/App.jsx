@@ -79,6 +79,12 @@ function App() {
               setPause(false);
               setStart(false);
               audio.play();
+              const santaClaus =
+                document.getElementsByClassName("santaClaus_Idle");
+              santaClaus[0].classList.replace(
+                "santaClaus_Idle",
+                "santaClaus_Walk"
+              );
             }}
           >
             START

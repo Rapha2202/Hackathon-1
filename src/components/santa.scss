@@ -1,0 +1,53 @@
+.santaClaus_Idle {
+  width: 936px;
+  height: 643px;
+  scale: 0.8;
+  background: url("../assets/Idle.png");
+  animation: santa_walk 0.8s steps(13) infinite;
+  -webkit-animation: santa_walk 0.8s steps(13) infinite;
+}
+
+.santaClaus_Walk {
+  width: 936px;
+  height: 643px;
+  scale: 0.8;
+  background: url("../assets/Walk.png");
+  animation: santa_walk 0.8s steps(13) infinite;
+  -webkit-animation: santa_walk 0.8s steps(13) infinite;
+}
+
+.santaClaus_Run {
+  width: 936px;
+  height: 643px;
+  scale: 0.8;
+  background: url("../assets/Run.png");
+  animation: santa_walk 0.7s steps(13) infinite;
+  -webkit-animation: santa_walk 0.8s steps(13) infinite;
+}
+
+.santaClaus_Jump {
+  width: 936px;
+  height: 643px;
+  scale: 0.8;
+  background: url("../assets/Jump.png");
+  animation: santa_walk 0.7s steps(13) infinite;
+  -webkit-animation: santa_walk 0.8s steps(13) infinite;
+}
+
+@keyframes santa_walk {
+  from {
+    background-position: 0;
+  }
+  to {
+    background-position: 12168px;
+  }
+}
+
+@-webkit-keyframes santa_walk {
+  from {
+    background-position: 0;
+  }
+  to {
+    background-position: 12168px;
+  }
+}
