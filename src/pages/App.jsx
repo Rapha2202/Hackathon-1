@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
-// import ButtonStart from "../components/Buttonstart.jsx";
 import music from "../assets/music.mp3";
-
-import Footer from "../components/Footer.jsx";
+import StopButton from "../components/Buttonstop.jsx";
 import SantaClaus from "../components/SantaClaus.jsx";
+import Footer from "../components/Footer.jsx";
 
 function App() {
   const [seconds, setSeconds] = useState(0);
@@ -18,6 +17,10 @@ function App() {
 
   const audio = new Audio(music);
   audio.loop = true;
+
+  const handleStopClick = () => {
+    console.log("Supplice arrêté!");
+  };
 
   useEffect(() => {
     if (!pause && !start) {
@@ -83,14 +86,14 @@ function App() {
           >
             START
           </button>
-          {/* <div className="flex justify-center items-center h-screen">
-            <Button onStartGame={startGame} />
-          </div> */}
         </div>
       )}
-      <div className="flex justify-center">
-        <SantaClaus />
+      <div className="flex justify-center items-center h-screen">
+        <StopButton onClick={handleStopClick} />
       </div>
+      {/* <div className="flex justify-center">
+        <SantaClaus />
+      </div> */}
       <div className="flex justify-center">
         <Footer />
       </div>
