@@ -1,14 +1,16 @@
 import PropTypes from "prop-types";
+import "./Buttonstop.css";
 
-function ButtonStop({ name }) {
-  ButtonStop.propTypes = {
-    name: PropTypes.string.isRequired,
-  };
+const StopButton = ({ onClick }) => {
   return (
-    <button type="button" className="Start">
-      {name}
-    </button>
+    <div className="buttonWrapper">
+      <button className="button" onClick={onClick} />
+    </div>
   );
-}
+};
 
-export default ButtonStop;
+StopButton.propTypes = {
+  onClick: PropTypes.func.isRequired,
+};
+
+export default StopButton;
