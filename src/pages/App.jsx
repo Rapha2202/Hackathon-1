@@ -1,11 +1,23 @@
 import { useState, useEffect, useRef } from "react";
 import music from "../assets/music.mp3";
+
+import Flames from "lottie-react";
+import animationData from "../assets/lotties/flames.json";
+import Footer from "../components/Footer.jsx";
 import StopButton from "../components/Buttonstop.jsx";
 import SantaClaus from "../components/SantaClaus.jsx";
 import Footer from "../components/Footer.jsx";
 import StartButton from "../components/Buttonstart.jsx";
 
 function App() {
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: animationData,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice",
+    },
+  };
   const [seconds, setSeconds] = useState(0);
   const [minutes, setMinutes] = useState(0);
   const [hours, setHours] = useState(0);
@@ -149,6 +161,23 @@ function App() {
           <StopButton onClick={handleStopClick} />
         </div>
       )}
+
+      
+      <div className="flammes">
+       
+        <Flames
+          className={` fixed w-1/2 ${minutes >= 1 ? "bottom-0 transition-all ease-out duration-700" : "bottom-[-500px]  w-1/2"} `}
+          animationData={animationData}
+          options={defaultOptions}
+        />
+        <Flames
+          className={` fixed right-0 w-1/2 ${minutes >= 1 ? "bottom-0 transition-all ease-out duration-700" : "bottom-[-500px]  "} `}
+          animationData={animationData}
+          options={defaultOptions}
+        />
+        </div>
+      <div className="flex justify-center fixed-bottom ">
+
       <button
         onClick={handlePause}
         className="h-16 w-16 bg-opacity-0 rounded-full fixed top-8 right-8 border-[3px] border-white flex justify-center items-center"
@@ -159,7 +188,6 @@ function App() {
           <img className="h-12" src="/pause-svgrepo-com.svg" alt="resume" />
         )}
       </button>
-
       <img className="fixed left-40 top-10" src="/MariaMoves.gif" alt="Maria" />
       <div className="flex">
         <SantaClaus start={start} />
