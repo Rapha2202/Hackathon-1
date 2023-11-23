@@ -3,7 +3,7 @@ import "../components/santa.css";
 function SantaClaus() {
   return (
     <>
-        <div></div>
+      <div className="santaClaus"></div>
     </>
   );
 }
