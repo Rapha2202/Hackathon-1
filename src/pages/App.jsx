@@ -25,6 +25,7 @@ function App() {
   const [newGift, setNewGift] = useState(
     gift[Math.floor(Math.random() * gift.length)]
   );
+  const [isGift, setIsGift] = useState(false);
 
   // J'utilise useRef pour mon audio
   const audio = useRef(new Audio(music));
@@ -34,6 +35,27 @@ function App() {
     setStop(true);
     audio.current.pause();
   };
+
+  let interval2 = null;
+
+  const giftClick = () => {
+    setIsGift(false);
+    setNewGift(gift[Math.floor(Math.random() * gift.length)]);
+    setScore((score) => score + 25);
+  };
+
+  useEffect(() => {
+    if (start && !stop && !pause) {
+      const interval = setInterval(() => {
+        setIsGift(true);
+        setInterval(() => {
+          setNewGift(gift[Math.floor(Math.random() * gift.length)]);
+          setIsGift(false);
+        }, 19000);
+      }, Math.floor(Math.random() * (50000 - 20000) + 20000));
+      return () => clearInterval(interval);
+    }
+  }, [start, stop, isGift]);
 
   const handlePause = () => {
     setPause(!pause);
@@ -73,6 +95,7 @@ function App() {
             setScore((score) => score + 0.5);
           } else {
             setScore((score) => score - 1);
+            console.log(interval2);
           }
         }
       }, 1000);
@@ -82,9 +105,15 @@ function App() {
 
   return (
     <div className="w-screen h-screen bg-cover bg-center bg-no-repeat bg-[url('../src/assets/christmasbg.jpg')]">
-      <button className="fixed h-20 w-20">
-        <img src={newGift} alt="error" />
-      </button>
+      {start && (
+        <button
+          onClick={giftClick}
+          className={`fixed h-20 w-20 ${isGift ? "block" : "hidden"}`}
+        >
+          <img src={newGift} alt="gift" />
+        </button>
+      )}
+
       <ul className="flex justify-around items-center h-[115px] w-[60%] m-auto text-black mt-[30px] bg-[#F9F9F9]/[.4] rounded-full">
         <li className="bg-white rounded-full w-1/6 text-center text-2xl py-2">
           Loop: {loops}
