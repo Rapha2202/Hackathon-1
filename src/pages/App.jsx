@@ -1,11 +1,20 @@
 import { useState, useEffect } from "react";
 // import ButtonStart from "../components/Buttonstart.jsx";
 import music from "../assets/music.mp3";
+import Flames from "lottie-react";
+import animationData from "../assets/lotties/flames.json";
 
 import Footer from "../components/Footer.jsx";
-import SantaClaus from "../components/SantaClaus.jsx";
 
 function App() {
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: animationData,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice",
+    },
+  };
   const [seconds, setSeconds] = useState(0);
   const [minutes, setMinutes] = useState(0);
   const [hours, setHours] = useState(0);
@@ -88,10 +97,21 @@ function App() {
           </div> */}
         </div>
       )}
-      <div className="flex justify-center">
-        <SantaClaus />
-      </div>
-      <div className="flex justify-center">
+      
+      <div className="flammes">
+        
+        <Flames
+          className={` fixed w-1/2 ${minutes >= 1 ? "bottom-0 transition-all ease-out duration-700" : "bottom-[-500px]  w-1/2"} `}
+          animationData={animationData}
+          options={defaultOptions}
+        />
+        <Flames
+          className={` fixed right-0 w-1/2 ${minutes >= 1 ? "bottom-0 transition-all ease-out duration-700" : "bottom-[-500px]  "} `}
+          animationData={animationData}
+          options={defaultOptions}
+        />
+        </div>
+      <div className="flex justify-center fixed-bottom ">
         <Footer />
       </div>
     </div>
