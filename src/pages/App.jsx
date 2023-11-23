@@ -37,8 +37,6 @@ function App() {
     audio.current.pause();
   };
 
-  let interval2 = null;
-
   const giftClick = () => {
     setIsGift(false);
     setNewGift(gift[Math.floor(Math.random() * gift.length)]);
@@ -103,7 +101,6 @@ function App() {
             setScore((score) => score + 0.5);
           } else {
             setScore((score) => score - 1);
-            console.log(interval2);
           }
         }
       }, 1000);
