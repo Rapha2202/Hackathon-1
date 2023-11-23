@@ -1,0 +1,7 @@
+.santaClaus {
+    display: flex;
+    justify-content: center;
+    width: 936px;
+    height: 643px;
+    background: url(../assets/spritesheet.png);
+}
