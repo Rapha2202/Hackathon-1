@@ -126,11 +126,7 @@ function App() {
       <div className="fixed left-40 bottom-20">
         <StopButton onClick={handleStopClick} />
       </div>
-      <img
-        className="fixed left-40 bottom-10"
-        src="/MariaMoves.gif"
-        alt="Maria"
-      />
+      <img className="fixed left-40 top-10" src="/MariaMoves.gif" alt="Maria" />
       <div className="flex justify-center">
         <Footer />
       </div>
