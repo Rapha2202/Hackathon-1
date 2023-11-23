@@ -3,6 +3,7 @@ import music from "../assets/music.mp3";
 import StopButton from "../components/Buttonstop.jsx";
 import SantaClaus from "../components/SantaClaus.jsx";
 import Footer from "../components/Footer.jsx";
+import StartButton from "../components/Buttonstart.jsx";
 
 function App() {
   const [seconds, setSeconds] = useState(0);
@@ -126,8 +127,8 @@ function App() {
       </ul>
       {!start ? (
         <div className="flex justify-center items-center h-[calc(100vh-145px)]">
-          <button
-            className="bg-white rounded-full text-center text-2xl py-4 px-40"
+          <StartButton
+            // className="bg-white rounded-full text-center text-2xl py-4 px-40"
             onClick={() => {
               setPause(false);
               setStart(true);
@@ -139,9 +140,7 @@ function App() {
                 "santaClaus_Walk"
               );
             }}
-          >
-            START
-          </button>
+          />
         </div>
       ) : (
         <div className="fixed left-40 bottom-20">
