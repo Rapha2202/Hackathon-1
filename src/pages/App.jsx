@@ -103,12 +103,14 @@ function App() {
   return (
     <div className="w-screen h-screen bg-cover bg-center bg-no-repeat bg-[url('../src/assets/christmasbg.jpg')]">
       {start && (
-        <button
-          onClick={giftClick}
-          className={`fixed h-20 w-20 ${isGift ? "block" : "hidden"}`}
-        >
-          <img src={newGift} alt="gift" />
-        </button>
+        <div className="fixed w-screen h-screen z-50">
+          <button
+            onClick={giftClick}
+            className={`h-20 w-20 ${isGift ? "fixed" : "fixed"}`}
+          >
+            <img src={newGift} alt="gift" />
+          </button>
+        </div>
       )}
 
       <ul className="flex justify-around items-center h-[115px] w-[60%] m-auto text-black mt-[30px] bg-[#F9F9F9]/[.4] rounded-full">
