@@ -2,36 +2,91 @@
   width: 936px;
   height: 643px;
   scale: 0.8;
+  transform: translate(-20%);
   background: url("../assets/Idle.png");
-  animation: santa_walk 0.8s steps(13) infinite;
-  -webkit-animation: santa_walk 0.8s steps(13) infinite;
+  animation: santa_walk 0.5s steps(13) infinite;
+  -webkit-animation: santa_walk 0.5s steps(13) infinite;
 }
 
 .santaClaus_Walk {
   width: 936px;
   height: 643px;
   scale: 0.8;
+  transform: translate(-50%);
   background: url("../assets/Walk.png");
-  animation: santa_walk 0.8s steps(13) infinite;
-  -webkit-animation: santa_walk 0.8s steps(13) infinite;
+  animation: santa_walk 0.7s steps(13) infinite, move_santa 15s linear infinite;
+  -webkit-animation: santa_walk 0.7s steps(13) infinite,
+    move_santa 15s linear infinite;
+}
+
+.santaClaus_WalkV2 {
+  width: 936px;
+  height: 643px;
+  scale: 0.8;
+  transform: translate(-50%);
+  background: url("../assets/Walk.png");
+  animation: santa_walk 0.7s steps(13) infinite, move_santa 10s linear infinite;
+  -webkit-animation: santa_walk 0.7s steps(13) infinite,
+    move_santa 10s linear infinite;
+}
+
+.santaClaus_WalkV3 {
+  width: 936px;
+  height: 643px;
+  scale: 0.8;
+  transform: translate(-50%);
+  background: url("../assets/Walk.png");
+  animation: santa_walk 0.5s steps(13) infinite, move_santa 7s linear infinite;
+  -webkit-animation: santa_walk 0.5s steps(13) infinite,
+    move_santa 7s linear infinite;
+}
+
+.santaClaus_WalkV4 {
+  width: 936px;
+  height: 643px;
+  scale: 0.8;
+  transform: translate(-50%);
+  background: url("../assets/Walk.png");
+  animation: santa_walk 0.5s steps(13) infinite, move_santa 4s linear infinite;
+  -webkit-animation: santa_walk 0.5s steps(13) infinite,
+    move_santa 4s linear infinite;
 }
 
 .santaClaus_Run {
   width: 936px;
   height: 643px;
   scale: 0.8;
+  transform: translate(-50%);
   background: url("../assets/Run.png");
   animation: santa_walk 0.7s steps(13) infinite;
-  -webkit-animation: santa_walk 0.8s steps(13) infinite;
+  -webkit-animation: santa_walk 0.5s steps(13) infinite;
+  animation: santa_walk 0.5s steps(13) infinite, move_santa 3s linear infinite;
+  -webkit-animation: santa_walk 0.5s steps(13) infinite,
+    move_santa 3s linear infinite;
 }
 
 .santaClaus_Jump {
   width: 936px;
   height: 643px;
   scale: 0.8;
+  transform: translate(-50%);
   background: url("../assets/Jump.png");
   animation: santa_walk 0.7s steps(13) infinite;
-  -webkit-animation: santa_walk 0.8s steps(13) infinite;
+  -webkit-animation: santa_walk 0.5s steps(13) infinite;
+  animation: santa_walk 0.5s steps(13) infinite, move_santa 2s linear infinite;
+  -webkit-animation: santa_walk 0.5s steps(13) infinite,
+    move_santa 2s linear infinite;
+}
+
+.santaClaus_MoonWalk {
+  width: 936px;
+  height: 643px;
+  scale: 0.8;
+  background: url("../assets/MoonWalk.png");
+  animation: santa_walk 0.5s steps(13) infinite, move_santa 2s linear infinite;
+  -webkit-animation: santa_walk 0.5s steps(13) infinite,
+    move_santa 2s linear infinite;
+  transform: translate(-50%);
 }
 
 @keyframes santa_walk {
@@ -49,5 +104,23 @@
   }
   to {
     background-position: 12168px;
+  }
+}
+
+@keyframes move_santa {
+  0% {
+    left: 0;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+@-webkit-keyframes move_santa {
+  0% {
+    left: 0;
+  }
+  100% {
+    left: 100%;
   }
 }

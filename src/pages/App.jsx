@@ -14,18 +14,6 @@ function App() {
   const [stop, setStop] = useState(false);
   const [pause, setPause] = useState(true);
 
-  const gift = [
-    "/gift-1.svg",
-    "/gift-2.svg",
-    "/gift-3.svg",
-    "/gift-4.svg",
-    "gift-5.svg",
-  ];
-
-  const [newGift, setNewGift] = useState(
-    gift[Math.floor(Math.random() * gift.length)]
-  );
-
   // J'utilise useRef pour mon audio
   const audio = useRef(new Audio(music));
   audio.current.loop = true;
@@ -44,15 +32,22 @@ function App() {
     }
   };
 
-  document.addEventListener("visibilitychange", () => {
-    if (document.visibilityState !== "visible") {
-      setPause(true);
+  useEffect(() => {
+    document.addEventListener("visibilitychange", () => {
+      if (document.visibilityState !== "visible") {
+        setPause(true);
+        audio.current.muted = true;
+      } else {
+        setPause(false);
+        audio.current.muted = false;
+      }
+    });
+
+    return () => {
       audio.current.muted = true;
-    } else {
-      setPause(false);
-      audio.current.muted = false;
-    }
-  });
+      audio.current = null;
+    };
+  }, [audio]);
 
   useEffect(() => {
     if (start && !stop) {
@@ -82,9 +77,6 @@ function App() {
 
   return (
     <div className="w-screen h-screen bg-cover bg-center bg-no-repeat bg-[url('../src/assets/christmasbg.jpg')]">
-      <button className="fixed h-20 w-20">
-        <img src={newGift} alt="error" />
-      </button>
       <ul className="flex justify-around items-center h-[115px] w-[60%] m-auto text-black mt-[30px] bg-[#F9F9F9]/[.4] rounded-full">
         <li className="bg-white rounded-full w-1/6 text-center text-2xl py-2">
           Loop: {loops}
@@ -98,10 +90,10 @@ function App() {
           {seconds <= 9 ? "0" + seconds : seconds}
         </li>
       </ul>
-      {!start ? (
-        <div className="flex justify-center items-center h-[calc(100vh-145px)]">
+      {!start && (
+        <div className="flex justify-center items-center h-[115px] w-[60%] m-auto text-black mt-[30px] bg-[#F9F9F9]/[.4] rounded-full">
           <button
-            className="bg-white rounded-full text-center text-2xl py-4 px-40"
+            className="bg-white rounded-full w-[8%] text-center text-2xl py-2"
             onClick={() => {
               setPause(false);
               setStart(true);
@@ -117,10 +109,6 @@ function App() {
             START
           </button>
         </div>
-      ) : (
-        <div className="fixed left-40 bottom-20">
-          <StopButton onClick={handleStopClick} />
-        </div>
       )}
       <button
         onClick={handlePause}
@@ -133,13 +121,8 @@ function App() {
         )}
       </button>
       <div className="flex">
-        <SantaClaus />
+        <SantaClaus start={start} />
       </div>
-
-      <div className="fixed left-40 bottom-20">
-        <StopButton onClick={handleStopClick} />
-      </div>
-      <img className="fixed left-40 top-10" src="/MariaMoves.gif" alt="Maria" />
       <div className="flex justify-center">
         <Footer />
       </div>
