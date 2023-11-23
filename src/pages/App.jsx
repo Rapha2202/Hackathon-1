@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import music from "../assets/music.mp3";
 import StopButton from "../components/Buttonstop.jsx";
 import SantaClaus from "../components/SantaClaus.jsx";
@@ -8,34 +8,49 @@ function App() {
   const [seconds, setSeconds] = useState(0);
   const [minutes, setMinutes] = useState(0);
   const [hours, setHours] = useState(0);
-
   const [score, setScore] = useState(0);
-
   const [loops, setLoops] = useState(0);
-
+  const [start, setStart] = useState(false);
+  const [stop, setStop] = useState(false);
   const [pause, setPause] = useState(true);
 
-  const [start, setStart] = useState(false);
+  // J'utilise useRef pour mon audio
+  const audio = useRef(new Audio(music));
+  audio.current.loop = true;
 
-  const audio = new Audio(music);
-  audio.loop = true;
-
-  document.addEventListener("visibilitychange", () => {
-    if (document.visibilityState !== "visible") {
-      setPause(true);
-      audio.volume = 0;
-    } else {
-      setPause(false);
-      audio.volume = 1;
-    }
-  });
-  
   const handleStopClick = () => {
-    console.log("Supplice arrêté!");
+    setStop(true);
+    audio.current.pause();
+  };
+
+  const handlePause = () => {
+    setPause(!pause);
+    if (!pause) {
+      audio.current.muted = true;
+    } else {
+      audio.current.muted = false;
+    }
   };
 
   useEffect(() => {
-    if (start) {
+    document.addEventListener("visibilitychange", () => {
+      if (document.visibilityState !== "visible") {
+        setPause(true);
+        audio.current.muted = true;
+      } else {
+        setPause(false);
+        audio.current.muted = false;
+      }
+    });
+
+    return () => {
+      audio.current.muted = true;
+      audio.current = null;
+    };
+  }, [audio]);
+
+  useEffect(() => {
+    if (start && !stop) {
       const interval = setInterval(() => {
         if (minutes === 59) {
           setMinutes(0);
@@ -51,18 +66,15 @@ function App() {
           setSeconds((seconds) => seconds + 1);
           if (!pause) {
             setScore((score) => score + 0.5);
-            audio.volume = 1;
-            console.log(audio.volume);
           } else {
             setScore((score) => score - 1);
-            audio.volume = 0;
           }
         }
       }, 1000);
       return () => clearInterval(interval);
     }
-  }, [seconds, minutes, pause, start]);
-  console.log(audio.volume);
+  }, [seconds, minutes, pause, start, stop]);
+
   return (
     <div className="w-screen h-screen bg-cover bg-center bg-no-repeat bg-[url('../src/assets/christmasbg.jpg')]">
       <ul className="flex justify-around items-center h-[115px] w-[60%] m-auto text-black mt-[30px] bg-[#F9F9F9]/[.4] rounded-full">
@@ -78,14 +90,14 @@ function App() {
           {seconds <= 9 ? "0" + seconds : seconds}
         </li>
       </ul>
-      {start && (
+      {!start && (
         <div className="flex justify-center items-center h-[115px] w-[60%] m-auto text-black mt-[30px] bg-[#F9F9F9]/[.4] rounded-full">
           <button
             className="bg-white rounded-full w-[8%] text-center text-2xl py-2"
             onClick={() => {
               setPause(false);
               setStart(true);
-              audio.play();
+              audio.current.play();
               const santaClaus =
                 document.getElementsByClassName("santaClaus_Idle");
               santaClaus[0].classList.replace(
@@ -99,7 +111,7 @@ function App() {
         </div>
       )}
       <button
-        onClick={() => setPause(!pause)}
+        onClick={handlePause}
         className="h-16 w-16 bg-opacity-0 rounded-full fixed top-8 right-8 border-[3px] border-white flex justify-center items-center"
       >
         {pause ? (
@@ -110,12 +122,12 @@ function App() {
       </button>
       <div className="flex justify-center">
         <SantaClaus />
-      <div className="flex justify-center items-center h-screen">
+      </div>
+
+      <div className="fixed left-40 bottom-20">
         <StopButton onClick={handleStopClick} />
       </div>
-      {/* <div className="flex justify-center">
-        <SantaClaus />
-      </div> */}
+
       <div className="flex justify-center">
         <Footer />
       </div>
