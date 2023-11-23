@@ -3,5 +3,12 @@
     justify-content: center;
     width: 936px;
     height: 643px;
-    background: url(../assets/spritesheet.png);
+    background: url("../assets/spritesheet.png");
+    animation: santa 0.9 steps(13) infinite;
+}
+
+@keyframes santa {
+    from {
+        background-position: 0;
+    }
 }

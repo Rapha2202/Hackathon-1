@@ -56,9 +56,15 @@ function App() {
         <li className="bg-white rounded-full w-1/6 text-center text-2xl py-2">
           {loops === -1 ? 0 : loops}
         </li>
-        <li className="bg-white rounded-full w-[8%] text-center text-2xl py-2">
+        <button
+          onClick={() => {
+            setPause(!pause);
+            console.log(pause);
+          }}
+          className="bg-white rounded-full w-[8%] text-center text-2xl py-2"
+        >
           PAUSE
-        </li>
+        </button>
         <li className="bg-white rounded-full w-1/6 text-center text-2xl py-2">
           {hours <= 9 ? "0" + hours : hours} :{" "}
           {minutes <= 9 ? "0" + minutes : minutes} :{" "}
