@@ -123,11 +123,10 @@ function App() {
       <div className="flex justify-center">
         <SantaClaus />
       </div>
-
       <div className="fixed left-40 bottom-20">
         <StopButton onClick={handleStopClick} />
       </div>
-
+      <img className="fixed left-40 top-10" src="/MariaMoves.gif" alt="Maria" />
       <div className="flex justify-center">
         <Footer />
       </div>
