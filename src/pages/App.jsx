@@ -14,7 +14,6 @@ function App() {
   const [stop, setStop] = useState(false);
   const [pause, setPause] = useState(true);
 
-
   const gift = [
     "/gift-1.svg",
     "/gift-2.svg",
@@ -37,8 +36,6 @@ function App() {
     audio.current.pause();
   };
 
-  let interval2 = null;
-
   const giftClick = () => {
     setIsGift(false);
     setNewGift(gift[Math.floor(Math.random() * gift.length)]);
@@ -56,7 +53,7 @@ function App() {
       }, Math.floor(Math.random() * (50000 - 20000) + 20000));
       return () => clearInterval(interval);
     }
-  }, [start, stop, isGift]);
+  }, [start, stop, isGift, pause]);
 
   const handlePause = () => {
     setPause(!pause);
@@ -67,22 +64,15 @@ function App() {
     }
   };
 
-  useEffect(() => {
-    document.addEventListener("visibilitychange", () => {
-      if (document.visibilityState !== "visible") {
-        setPause(true);
-        audio.current.muted = true;
-      } else {
-        setPause(false);
-        audio.current.muted = false;
-      }
-    });
-
-    return () => {
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState !== "visible") {
+      setPause(true);
       audio.current.muted = true;
-      audio.current = null;
-    };
-  }, [audio]);
+    } else {
+      setPause(false);
+      audio.current.muted = false;
+    }
+  });
 
   useEffect(() => {
     if (start && !stop) {
@@ -103,7 +93,6 @@ function App() {
             setScore((score) => score + 0.5);
           } else {
             setScore((score) => score - 1);
-            console.log(interval2);
           }
         }
       }, 1000);
@@ -113,7 +102,6 @@ function App() {
 
   return (
     <div className="w-screen h-screen bg-cover bg-center bg-no-repeat bg-[url('../src/assets/christmasbg.jpg')]">
-
       {start && (
         <button
           onClick={giftClick}
@@ -136,10 +124,10 @@ function App() {
           {seconds <= 9 ? "0" + seconds : seconds}
         </li>
       </ul>
-      {!start && (
-        <div className="flex justify-center items-center h-[115px] w-[60%] m-auto text-black mt-[30px] bg-[#F9F9F9]/[.4] rounded-full">
+      {!start ? (
+        <div className="flex justify-center items-center h-[calc(100vh-145px)]">
           <button
-            className="bg-white rounded-full w-[8%] text-center text-2xl py-2"
+            className="bg-white rounded-full text-center text-2xl py-4 px-40"
             onClick={() => {
               setPause(false);
               setStart(true);
@@ -155,6 +143,10 @@ function App() {
             START
           </button>
         </div>
+      ) : (
+        <div className="fixed left-40 bottom-20">
+          <StopButton onClick={handleStopClick} />
+        </div>
       )}
       <button
         onClick={handlePause}
@@ -166,6 +158,8 @@ function App() {
           <img className="h-12" src="/pause-svgrepo-com.svg" alt="resume" />
         )}
       </button>
+
+      <img className="fixed left-40 top-10" src="/MariaMoves.gif" alt="Maria" />
       <div className="flex">
         <SantaClaus start={start} />
       </div>

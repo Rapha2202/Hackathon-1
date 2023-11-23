@@ -11,7 +11,7 @@ function SantaClaus({ start }) {
     santaClaus[0].classList.replace(before, after);
   }
   useEffect(() => {
-    if (start === true) {
+    if (start) {
       setTimeout(() => {
         replaceClass("santaClaus_Walk", "santaClaus_WalkV2");
         setTimeout(() => {
