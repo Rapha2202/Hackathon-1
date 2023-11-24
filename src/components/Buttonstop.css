@@ -1,32 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
 .buttonWrapper .button {
   position: absolute;
   bottom: 0;
-  width: 13.75rem; /* 50% de 27.5rem */
-  height: 11.09rem; /* 50% de 22.19rem */
+  width: 13.75rem;
+  height: 11.09rem;
   border-radius: 50%;
   background: #b3b3b3;
   box-shadow: 0 0.3125rem 0 #888888, 0 0.625rem 0 #888888, 0 0.9375rem 0 #888888,
     0.3125rem 1.25rem 0 hsla(0, 0%, 0%, 0.2);
   cursor: pointer;
   transition: all 100ms;
-  font-size: 0.625rem; /* 50% de 1.25rem */
-  color: white;
+  font-family: 'Press Start 2P', cursive;
   text-align: center;
-  line-height: 11.09rem; /* Ajusté pour correspondre à la hauteur */
+  line-height: 11.09rem;
 }
 
 .buttonWrapper .button:before {
+  content: "STOP";
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: absolute;
-  top: -2.97rem; /* 50% de -5.94rem */
-  left: 1.25rem; /* 50% de 2.5rem */
-  width: 11.25rem; /* 50% de 22.5rem */
-  height: 9.53rem; /* 50% de 19.06rem */
+  top: -2.97rem;
+  left: 1.25rem;
+  width: 11.25rem;
+  height: 9.53rem;
   border-radius: inherit;
-  content: "";
   background-color: #ff0017;
   box-shadow: 0 0.9375rem 0 #df0014, 0 1.875rem 0 #df0014, 0 2.8125rem 0 #df0014,
     0 3.4375rem 0 #df0014, 0.78rem 4.375rem 0 hsla(0, 0%, 0%, 0.1);
   transition: all 100ms;
+  font-size: 2rem;
+  color: white;
 }
 
 .buttonWrapper .button:active:before {
