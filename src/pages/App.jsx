@@ -278,15 +278,11 @@ function App() {
           />
         </div>
       ) : (
-        <div onClick={handleStopClick} className="fixed z-40 left-5 bottom-5">
+        <div
+          onClick={handleStopClick}
+          className="buttonWrapper fixed z-40 left-5 bottom-5"
+        >
           <StopButton />
-          <p
-            className={`fixed bottom-36 font-bold left-[5.4rem] z-50 text-4xl text-white ${
-              stop && "transition-all translate-y-9"
-            } `}
-          >
-            STOP
-          </p>
         </div>
       )}
 

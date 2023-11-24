@@ -3,8 +3,8 @@ import "./Buttonstop.css";
 
 const StopButton = ({ onClick }) => {
   return (
-    <div className="buttonWrapper">
-      <button className="button" onClick={onClick} />
+    <div className="buttonWrapper" onClick={onClick}>
+      <button className="button" />
     </div>
   );
 };
