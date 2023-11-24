@@ -3,7 +3,7 @@ import "./Buttonstart.css";
 
 const StartButton = ({ onClick }) => {
   return (
-    <div className="button-container">
+    <div className="button-container z-50">
       <button className="start-btn" onClick={onClick}>
         Go Maria !
       </button>
