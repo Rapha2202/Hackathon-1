@@ -26,7 +26,11 @@ function App() {
   const [start, setStart] = useState(false);
   const [stop, setStop] = useState(false);
   const [pause, setPause] = useState(true);
-  const [pos, setPos] = useState(Math.floor(Math.random() * 95));
+  const [posPetit, setPosPetit] = useState(Math.floor(Math.random() * 95));
+  const [posGros1, setPosGros1] = useState(Math.floor(Math.random() * 95));
+  const [posGros2, setPosGros2] = useState(Math.floor(Math.random() * 95));
+  const [posGros3, setPosGros3] = useState(Math.floor(Math.random() * 95));
+  const [posGros4, setPosGros4] = useState(Math.floor(Math.random() * 95));
 
   const gift = [
     "/gift-1.svg",
@@ -37,6 +41,18 @@ function App() {
   ];
 
   const [newGift, setNewGift] = useState(
+    gift[Math.floor(Math.random() * gift.length)]
+  );
+  const [newGift1, setNewGift1] = useState(
+    gift[Math.floor(Math.random() * gift.length)]
+  );
+  const [newGift2, setNewGift2] = useState(
+    gift[Math.floor(Math.random() * gift.length)]
+  );
+  const [newGift3, setNewGift3] = useState(
+    gift[Math.floor(Math.random() * gift.length)]
+  );
+  const [newGift4, setNewGift4] = useState(
     gift[Math.floor(Math.random() * gift.length)]
   );
 
@@ -50,26 +66,64 @@ function App() {
   };
 
   const giftpos = document.querySelector("#gift");
+  const giftposGros1 = document.querySelector("#giftGros1");
+  const giftposGros2 = document.querySelector("#giftGros2");
+  const giftposGros3 = document.querySelector("#giftGros3");
+  const giftposGros4 = document.querySelector("#giftGros4");
 
   function setProperty(pos) {
     giftpos.style.setProperty("--left", pos + "%");
   }
 
-  useEffect(() => {
-    if (start) {
-      const interval = setInterval(() => {
-        setPos(Math.floor(Math.random() * 95));
-        setProperty(pos);
-      }, 4000);
-      return () => clearInterval(interval);
-    }
-  }, [start, pos]);
+  function setProperty1(pos) {
+    giftposGros1.style.setProperty("--left1", pos + "%");
+  }
+
+  function setProperty2(pos) {
+    giftposGros2.style.setProperty("--left2", pos + "%");
+  }
+
+  function setProperty3(pos) {
+    giftposGros3.style.setProperty("--left3", pos + "%");
+  }
+
+  function setProperty4(pos) {
+    giftposGros4.style.setProperty("--left4", pos + "%");
+  }
 
   const giftClick = () => {
     setNewGift(gift[Math.floor(Math.random() * gift.length)]);
-    setPos(Math.floor(Math.random() * 95));
-    setProperty(pos);
-    setScore((score) => score + 25);
+    setPosPetit(Math.floor(Math.random() * 95));
+    setProperty(posPetit);
+    setScore((score) => score + 15);
+  };
+
+  const giftClickGros1 = () => {
+    setNewGift1(gift[Math.floor(Math.random() * gift.length)]);
+    setPosGros1(Math.floor(Math.random() * 95));
+    setProperty1(posGros1);
+    setScore((score) => score + 1);
+  };
+
+  const giftClickGros2 = () => {
+    setNewGift2(gift[Math.floor(Math.random() * gift.length)]);
+    setPosGros2(Math.floor(Math.random() * 95));
+    setProperty2(posGros2);
+    setScore((score) => score + 1);
+  };
+
+  const giftClickGros3 = () => {
+    setNewGift3(gift[Math.floor(Math.random() * gift.length)]);
+    setPosGros3(Math.floor(Math.random() * 95));
+    setProperty3(posGros3);
+    setScore((score) => score + 1);
+  };
+
+  const giftClickGros4 = () => {
+    setNewGift4(gift[Math.floor(Math.random() * gift.length)]);
+    setPosGros4(Math.floor(Math.random() * 95));
+    setProperty4(posGros4);
+    setScore((score) => score + 1);
   };
 
   const handlePause = () => {
@@ -119,13 +173,49 @@ function App() {
 
   return (
     <div className="w-screen h-screen bg-cover bg-center bg-no-repeat bg-[url('../src/assets/christmasbg.jpg')]">
-
       {start && !stop && (
-        <div id="gift" className="h-screen fixed giftpos">
-          <button onClick={giftClick} className="gift">
+        <div>
+          <div className="h-screen fixed select-none z-40">
+            <button
+              id="gift"
+              onClick={giftClick}
+              className="gift fixed giftpos"
+            >
+              <img src={newGift} alt="gift" className="select-none" />
+            </button>
 
-            <img src={newGift} alt="gift" />
-          </button>
+            <button
+              id="giftGros1"
+              onClick={giftClickGros1}
+              className="giftGros fixed giftposGros1"
+            >
+              <img src={newGift1} alt="gift" className="select-none" />
+            </button>
+
+            <button
+              id="giftGros2"
+              onClick={giftClickGros2}
+              className="giftGros fixed giftposGros2"
+            >
+              <img src={newGift2} alt="gift" className="select-none" />
+            </button>
+
+            <button
+              id="giftGros3"
+              onClick={giftClickGros3}
+              className="giftGros fixed giftposGros3"
+            >
+              <img src={newGift3} alt="gift" className="select-none" />
+            </button>
+
+            <button
+              id="giftGros4"
+              onClick={giftClickGros4}
+              className="giftGros fixed giftposGros4"
+            >
+              <img src={newGift4} alt="gift" className="select-none" />
+            </button>
+          </div>
         </div>
       )}
 
@@ -159,13 +249,13 @@ function App() {
       )}
 
       <ul className="flex justify-around items-center h-[115px] w-[60%] m-auto text-black mt-[30px] bg-[#F9F9F9]/[.4] rounded-full">
-        <li className="bg-white rounded-full w-1/6 text-center text-2xl py-2">
+        <li className="bg-white rounded-full w-1/6 text-center text-2xl py-2 select-none">
           Loop: {loops}
         </li>
-        <li className="bg-white rounded-full w-1/6 text-center text-2xl py-2">
+        <li className="bg-white rounded-full w-1/6 text-center text-2xl py-2 select-none">
           Score: {score}
         </li>
-        <li className="bg-white rounded-full w-1/6 text-center text-2xl py-2">
+        <li className="bg-white rounded-full w-1/6 text-center text-2xl py-2 select-none">
           {hours <= 9 ? "0" + hours : hours} :{" "}
           {minutes <= 9 ? "0" + minutes : minutes} :{" "}
           {seconds <= 9 ? "0" + seconds : seconds}
@@ -226,9 +316,17 @@ function App() {
           className="h-16 w-16 bg-opacity-0 z-50 rounded-full fixed top-8 right-8 border-[3px] border-white flex justify-center items-center"
         >
           {pause ? (
-            <img className="h-12" src="/play-svgrepo-com.svg" alt="pause" />
+            <img
+              className="h-12 select-none"
+              src="/play-svgrepo-com.svg"
+              alt="pause"
+            />
           ) : (
-            <img className="h-12" src="/pause-svgrepo-com.svg" alt="resume" />
+            <img
+              className="h-12 select-none"
+              src="/pause-svgrepo-com.svg"
+              alt="resume"
+            />
           )}
         </button>
         <img
