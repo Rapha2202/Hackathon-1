@@ -55,6 +55,16 @@ function App() {
     giftpos.style.setProperty("--left", pos + "%");
   }
 
+  useEffect(() => {
+    if (start) {
+      const interval = setInterval(() => {
+        setPos(Math.floor(Math.random() * 95));
+        setProperty(pos);
+      }, 4000);
+      return () => clearInterval(interval);
+    }
+  }, [start, pos]);
+
   const giftClick = () => {
     setNewGift(gift[Math.floor(Math.random() * gift.length)]);
     setPos(Math.floor(Math.random() * 95));
