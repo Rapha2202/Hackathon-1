@@ -2,6 +2,8 @@ import { useState, useEffect, useRef } from "react";
 import music from "../assets/music.mp3";
 
 import Flames from "lottie-react";
+import Snow from "lottie-react";
+import animationSnow from "../assets/lotties/snow.json"
 import animationData from "../assets/lotties/flames.json";
 import Footer from "../components/Footer.jsx";
 import StopButton from "../components/Buttonstop.jsx";
@@ -172,7 +174,13 @@ function App() {
   }, [seconds, minutes, pause, start, stop]);
 
   return (
+
     <div className="w-screen h-screen bg-cover bg-center bg-no-repeat bg-[url('../src/assets/christmasbg.jpg')]">
+    <Snow 
+    className="fixed w-screen "
+    animationData={animationSnow}
+    options={defaultOptions}
+    />
       {start && !stop && (
         <div>
           <div className="h-screen fixed select-none z-40">
