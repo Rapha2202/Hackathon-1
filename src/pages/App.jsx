@@ -141,7 +141,6 @@ function App() {
       {!start ? (
         <div className="flex justify-center items-center h-[calc(100vh-145px)]">
           <StartButton
-            // className="bg-white rounded-full text-center text-2xl py-4 px-40"
             onClick={() => {
               setPause(false);
               setStart(true);
@@ -166,7 +165,9 @@ function App() {
           className={` fixed w-1/2 ${
             minutes >= 1
               ? "bottom-0 transition-all ease-out duration-700"
+
               : "bottom-[-600px]  w-1/2"
+
           } `}
           animationData={animationData}
           options={defaultOptions}
@@ -175,7 +176,9 @@ function App() {
           className={` fixed right-0 w-1/2 ${
             minutes >= 1
               ? "bottom-0 transition-all ease-out duration-700"
+
               : "bottom-[-600px]  "
+
           } `}
           animationData={animationData}
           options={defaultOptions}
@@ -207,5 +210,4 @@ function App() {
     </div>
   );
 }
-
 export default App;
