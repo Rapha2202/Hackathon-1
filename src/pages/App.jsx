@@ -216,7 +216,6 @@ function App() {
           options={defaultOptions}
         />
       </div>
-
       <div className="flex justify-center fixed-bottom ">
         <button
           onClick={handlePause}
