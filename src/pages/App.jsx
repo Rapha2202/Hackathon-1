@@ -115,13 +115,42 @@ function App() {
   return (
     <div className="w-screen h-screen bg-cover bg-center bg-no-repeat bg-[url('../src/assets/christmasbg.jpg')]">
       {start && (
-        <div className="fixed w-screen h-screen z-50">
+        <div className="fixed w-screen h-screen z-20">
           <button
             onClick={giftClick}
             className={`h-20 w-20 ${isGift ? "fixed" : "fixed"}`}
           >
             <img src={newGift} alt="gift" />
           </button>
+        </div>
+      )}
+
+      {stop && (
+        <div className="fixed w-screen h-screen z-50">
+          <div className="flex justify-center items-center h-screen">
+            <div className="flex flex-col justify-center items-center bg-white w-[400px] h-[400px] rounded-full">
+              <h1 className="text-6xl font-bold text-black mt-4">GAME OVER</h1>
+              <p className="text-2xl font-bold text-black">
+                Votre score est de: {score}
+              </p>
+              <button
+                onClick={() => {
+                  setStart(false);
+                  setStop(false);
+                  setPause(true);
+                  setSeconds(0);
+                  setMinutes(0);
+                  setHours(0);
+                  setScore(0);
+                  setLoops(0);
+                  audio.current.currentTime = 0;
+                }}
+                className="bg-black text-white mt-4 font-bold text-2xl px-4 py-2 rounded-full"
+              >
+                Restart
+              </button>
+            </div>
+          </div>
         </div>
       )}
 
@@ -155,8 +184,15 @@ function App() {
           />
         </div>
       ) : (
-        <div className="fixed left-40 bottom-20">
-          <StopButton onClick={handleStopClick} />
+        <div onClick={handleStopClick} className="fixed z-40 left-5 bottom-5">
+          <StopButton />
+          <p
+            className={`fixed bottom-36 font-bold left-[5.4rem] z-50 text-4xl text-white ${
+              stop && "transition-all translate-y-9"
+            } `}
+          >
+            STOP
+          </p>
         </div>
       )}
 
@@ -165,7 +201,7 @@ function App() {
           className={` fixed w-1/2 ${
             minutes >= 1
               ? "bottom-0 transition-all ease-out duration-700"
-              : "bottom-[-500px]  w-1/2"
+              : "bottom-[-600px]  w-1/2"
           } `}
           animationData={animationData}
           options={defaultOptions}
@@ -174,7 +210,7 @@ function App() {
           className={` fixed right-0 w-1/2 ${
             minutes >= 1
               ? "bottom-0 transition-all ease-out duration-700"
-              : "bottom-[-500px]  "
+              : "bottom-[-600px]  "
           } `}
           animationData={animationData}
           options={defaultOptions}
@@ -184,7 +220,7 @@ function App() {
       <div className="flex justify-center fixed-bottom ">
         <button
           onClick={handlePause}
-          className="h-16 w-16 bg-opacity-0 rounded-full fixed top-8 right-8 border-[3px] border-white flex justify-center items-center"
+          className="h-16 w-16 bg-opacity-0 z-50 rounded-full fixed top-8 right-8 border-[3px] border-white flex justify-center items-center"
         >
           {pause ? (
             <img className="h-12" src="/play-svgrepo-com.svg" alt="pause" />
@@ -193,7 +229,7 @@ function App() {
           )}
         </button>
         <img
-          className="fixed left-40 top-10"
+          className="fixed left-20 bottom-40"
           src="/MariaMoves.gif"
           alt="Maria"
         />
