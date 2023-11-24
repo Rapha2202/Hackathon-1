@@ -7,6 +7,7 @@ import Footer from "../components/Footer.jsx";
 import StopButton from "../components/Buttonstop.jsx";
 import SantaClaus from "../components/SantaClaus.jsx";
 import StartButton from "../components/Buttonstart.jsx";
+import "./gift.scss";
 
 function App() {
   const defaultOptions = {
@@ -25,6 +26,7 @@ function App() {
   const [start, setStart] = useState(false);
   const [stop, setStop] = useState(false);
   const [pause, setPause] = useState(true);
+  const [pos, setPos] = useState(Math.floor(Math.random() * 95));
 
   const gift = [
     "/gift-1.svg",
@@ -37,7 +39,6 @@ function App() {
   const [newGift, setNewGift] = useState(
     gift[Math.floor(Math.random() * gift.length)]
   );
-  const [isGift, setIsGift] = useState(false);
 
   // J'utilise useRef pour mon audio
   const audio = useRef(new Audio(music));
@@ -48,24 +49,18 @@ function App() {
     audio.current.pause();
   };
 
+  const giftpos = document.querySelector("#gift");
+
+  function setProperty(pos) {
+    giftpos.style.setProperty("--left", pos + "%");
+  }
+
   const giftClick = () => {
-    setIsGift(false);
     setNewGift(gift[Math.floor(Math.random() * gift.length)]);
+    setPos(Math.floor(Math.random() * 95));
+    setProperty(pos);
     setScore((score) => score + 25);
   };
-
-  useEffect(() => {
-    if (start && !stop && !pause) {
-      const interval = setInterval(() => {
-        setIsGift(true);
-        setInterval(() => {
-          setNewGift(gift[Math.floor(Math.random() * gift.length)]);
-          setIsGift(false);
-        }, 19000);
-      }, Math.floor(Math.random() * (50000 - 20000) + 20000));
-      return () => clearInterval(interval);
-    }
-  }, [start, stop, isGift, pause]);
 
   const handlePause = () => {
     setPause(!pause);
@@ -114,12 +109,9 @@ function App() {
 
   return (
     <div className="w-screen h-screen bg-cover bg-center bg-no-repeat bg-[url('../src/assets/christmasbg.jpg')]">
-      {start && (
-        <div className="fixed w-screen h-screen z-50">
-          <button
-            onClick={giftClick}
-            className={`h-20 w-20 ${isGift ? "fixed" : "fixed"}`}
-          >
+      {start && !stop && (
+        <div id="gift" className="h-screen fixed giftpos">
+          <button onClick={giftClick} className="gift">
             <img src={newGift} alt="gift" />
           </button>
         </div>
@@ -193,7 +185,7 @@ function App() {
           )}
         </button>
         <img
-          className="fixed left-40 top-10"
+          className="fixed left-40 top-10 select-none"
           src="/MariaMoves.gif"
           alt="Maria"
         />
