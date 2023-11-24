@@ -223,7 +223,12 @@ function App() {
         <div className="fixed w-screen h-screen z-50">
           <div className="flex justify-center items-center h-screen">
             <div className="flex flex-col justify-center items-center bg-white w-[400px] h-[400px] rounded-full">
-              <h1 className="text-6xl font-bold text-black mt-4">GAME OVER</h1>
+              <h1
+                id="over"
+                className=" text-center text-6xl font-bold text-black mt-4"
+              >
+                GAME OVER
+              </h1>
               <p className="text-2xl font-bold text-black">
                 Votre score est de: {score}
               </p>
@@ -249,13 +254,13 @@ function App() {
       )}
 
       <ul className="flex justify-around items-center h-[115px] w-[60%] m-auto text-black mt-[30px] bg-[#F9F9F9]/[.4] rounded-full">
-        <li className="bg-white rounded-full w-1/6 text-center text-2xl py-2 select-none">
+        <li className="bg-white rounded-full w-1/5 text-center text-2xl py-2 select-none">
           Loop: {loops}
         </li>
-        <li className="bg-white rounded-full w-1/6 text-center text-2xl py-2 select-none">
+        <li className="bg-white rounded-full w-1/5 text-center text-2xl py-2 select-none">
           Score: {score}
         </li>
-        <li className="bg-white rounded-full w-1/6 text-center text-2xl py-2 select-none">
+        <li className="bg-white rounded-full w-1/5 text-center text-2xl py-2 select-none">
           {hours <= 9 ? "0" + hours : hours} :{" "}
           {minutes <= 9 ? "0" + minutes : minutes} :{" "}
           {seconds <= 9 ? "0" + seconds : seconds}
@@ -280,7 +285,7 @@ function App() {
       ) : (
         <div
           onClick={handleStopClick}
-          className="buttonWrapper fixed z-40 left-5 bottom-5"
+          className="buttonWrapper fixed z-40 left-5 bottom-8"
         >
           <StopButton />
         </div>
@@ -289,7 +294,7 @@ function App() {
       <div className="flammes">
         <Flames
           className={` fixed w-1/2 ${
-            minutes >= 1
+            seconds >= 55 || minutes >= 1
               ? "bottom-0 transition-all ease-out duration-700"
               : "bottom-[-600px]  w-1/2"
           } `}
@@ -298,7 +303,7 @@ function App() {
         />
         <Flames
           className={` fixed right-0 w-1/2 ${
-            minutes >= 1
+            seconds >= 55 || minutes >= 1
               ? "bottom-0 transition-all ease-out duration-700"
               : "bottom-[-600px]  "
           } `}
@@ -326,7 +331,7 @@ function App() {
           )}
         </button>
         <img
-          className="fixed left-40 top-10 select-none"
+          className="fixed left-40 bottom-40 select-none"
           src="/MariaMoves.gif"
           alt="Maria"
         />

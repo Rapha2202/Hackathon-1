@@ -24,12 +24,12 @@ function SantaClaus({ start }) {
                 replaceClass("santaClaus_Run", "santaClaus_Jump");
                 setTimeout(() => {
                   replaceClass("santaClaus_Jump", "santaClaus_MoonWalk");
-                }, 240000);
-              }, 240000);
-            }, 240000);
-          }, 240000);
-        }, 240000);
-      }, 240000);
+                }, 15000);
+              }, 15000);
+            }, 15000);
+          }, 15000);
+        }, 15000);
+      }, 15000);
     }
   }, [start]);
   return (
