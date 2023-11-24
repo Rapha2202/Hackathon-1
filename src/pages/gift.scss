@@ -3,12 +3,49 @@
   height: 50px;
 }
 
+.giftGros {
+  width: 100px;
+  height: 100px;
+}
+
 :root {
   --left: 50%;
+  --left1: 10%;
+  --left2: 20%;
+  --left3: 70%;
+  --left4: 95%;
 }
 
 .giftpos {
   left: var(--left);
+  animation: MoveUpDown 4s linear infinite;
+  -webkit-animation: MoveUpDown 4s linear infinite;
+  z-index: 10;
+}
+
+.giftposGros1 {
+  left: var(--left1);
+  animation: MoveUpDown 4s linear infinite;
+  -webkit-animation: MoveUpDown 4s linear infinite;
+  z-index: 10;
+}
+
+.giftposGros2 {
+  left: var(--left2);
+  animation: MoveUpDown 4s linear infinite;
+  -webkit-animation: MoveUpDown 4s linear infinite;
+  z-index: 10;
+}
+
+.giftposGros3 {
+  left: var(--left3);
+  animation: MoveUpDown 4s linear infinite;
+  -webkit-animation: MoveUpDown 4s linear infinite;
+  z-index: 10;
+}
+
+.giftposGros4 {
+  left: var(--left4);
   animation: MoveUpDown 4s linear infinite;
   -webkit-animation: MoveUpDown 4s linear infinite;
   z-index: 10;
