@@ -165,7 +165,9 @@ function App() {
           className={` fixed w-1/2 ${
             minutes >= 1
               ? "bottom-0 transition-all ease-out duration-700"
-              : "bottom-[-500px]  w-1/2"
+
+              : "bottom-[-600px]  w-1/2"
+
           } `}
           animationData={animationData}
           options={defaultOptions}
@@ -174,13 +176,14 @@ function App() {
           className={` fixed right-0 w-1/2 ${
             minutes >= 1
               ? "bottom-0 transition-all ease-out duration-700"
-              : "bottom-[-500px]  "
+
+              : "bottom-[-600px]  "
+
           } `}
           animationData={animationData}
           options={defaultOptions}
         />
       </div>
-
       <div className="flex justify-center fixed-bottom ">
         <button
           onClick={handlePause}
